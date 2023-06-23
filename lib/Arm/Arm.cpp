@@ -27,6 +27,10 @@ void Arm::home() {
 void Arm::setIndividualPosition(uint8_t motorNum, uint8_t position) {
   if (motorNum < 6) {
     motors[motorNum].setPosition(position);
+    Serial.print("Motor ");
+    Serial.print(motorNum);
+    Serial.print(" set to position ");
+    Serial.println(position);
   }
 }
 
