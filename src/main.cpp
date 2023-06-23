@@ -7,7 +7,7 @@ Arm arm;
  * Inicializa a comunicação serial e configura os motores do braço.
  */
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 /**
@@ -15,11 +15,19 @@ void setup() {
  */
 void loop() {
   if (Serial.available()) {
-    // Aguarda a entrada de um número no formato "motorNum,position"
+    // Aguarda a entrada de um comando no formato "motorNum,position" ou "home"
     String input = Serial.readStringUntil('\n');
-    int motorNum = input.substring(0, input.indexOf(',')).toInt();
-    int position = input.substring(input.indexOf(',') + 1).toInt();
+    Serial.print(input);
+    if (input == "home") {
+      arm.home();
+      Serial.println("Home command executed");
+    } else {
+      // Extrai o número do motor e a posição da string lida
+      int motorNum = input.substring(0, input.indexOf(',')).toInt();
+      int position = input.substring(input.indexOf(',') + 1).toInt();
 
-    arm.setIndividualPosition(motorNum, position);
+      arm.setIndividualPosition(motorNum, position);
+    }
   }
 }
+

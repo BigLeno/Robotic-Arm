@@ -14,10 +14,10 @@ Arm::Arm() : motors{
 }
 
 void Arm::home() {
-  setIndividualPosition(0, 0); // Motor 0 - posição inicial específica
-  setIndividualPosition(1, 0); // Motor 1 - posição inicial específica
-  setIndividualPosition(2, 0); // Motor 2 - posição inicial específica
-  setIndividualPosition(3, 0); // Motor 3 - posição inicial específica
+  setIndividualPosition(0, 25); // Motor 0 - posição inicial específica
+  setIndividualPosition(1, 55); // Motor 1 - posição inicial específica
+  setIndividualPosition(2, 55); // Motor 2 - posição inicial específica
+  setIndividualPosition(3, 50); // Motor 3 - posição inicial específica
   setIndividualPosition(4, 0); // Motor 4 - posição inicial específica
   setIndividualPosition(5, 0); // Motor 5 - posição inicial específica
 }
