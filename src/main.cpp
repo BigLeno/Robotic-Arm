@@ -14,5 +14,12 @@ void setup() {
  * Controla os motores do braço.
  */
 void loop() {
-  arm.setIndividualPosition(0, 90); // Define a posição do Motor 0 para 90 graus
+  if (Serial.available()) {
+    // Aguarda a entrada de um número no formato "motorNum,position"
+    String input = Serial.readStringUntil('\n');
+    int motorNum = input.substring(0, input.indexOf(',')).toInt();
+    int position = input.substring(input.indexOf(',') + 1).toInt();
+
+    arm.setIndividualPosition(motorNum, position);
+  }
 }
