@@ -11,6 +11,8 @@ Arm::Arm() : motors{
   for (int i = 0; i < 6; i++) {
     motors[i].attach();
   }
+
+  Serial.begin(115200);
 }
 
 void Arm::home() {
