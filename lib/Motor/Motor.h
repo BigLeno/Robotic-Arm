@@ -14,6 +14,7 @@ private:
   uint8_t motorNum;     // Número referente a cada motor
   uint16_t minPulse;    // Valor mínimo de pulso
   uint16_t maxPulse;    // Valor máximo de pulso
+  uint8_t currentPosition; // Variável para armazenar a posição atual do servo
 
 public:
   /**
@@ -24,12 +25,12 @@ public:
    * @param maxPulse  O valor máximo de pulso.
    */
   Motor(uint8_t num, uint16_t minPulse, uint16_t maxPulse);
-
+    
   /**
    * @brief Inicializa o motor.
    */
   void attach();
-
+  
   /**
    * @brief Converte graus para pulso.
    *
@@ -39,11 +40,26 @@ public:
   int conversor(int grau);
 
   /**
+   * @brief Retorna a posição atual do motor.
+   *
+   * @return A posição atual em graus.
+   */
+  uint8_t getPosition();
+
+  /**
    * @brief Define a posição do motor.
    *
    * @param position  A posição em graus.
    */
   void setPosition(uint8_t position);
+
+  /**
+   * @brief Define a posição suavemente, com incrementos progressivos.
+   *
+   * @param targetPosition  A posição alvo em graus.
+   * @param increment       O incremento de posição a cada passo.
+   */
+  void setPositionSmooth(uint8_t targetPosition, uint8_t increment);
 };
 
 #endif
